@@ -1,10 +1,10 @@
-from gui import *
-from sonification import *
-from spectrum import *
-from util import *
+from .gui import *
+from .sonification import *
+from .spectrum import *
+from .util import *
 
 import customtkinter as ctk
-from PIL import Image
+import PIL.Image
 from tkinter import *
 from tkinter.ttk import Progressbar
 
@@ -367,8 +367,8 @@ if __name__ == "__main__":
     # Create empty plot to diplay as a placholder for the simulated spectrum
     plot_empty(plot_size, config)
 
-    _spec_plot = ctk.CTkImage(light_image=Image.open(config.plot_path),
-                              dark_image=Image.open(config.plot_path),
+    _spec_plot = ctk.CTkImage(light_image=PIL.Image.open(config.plot_path),
+                              dark_image=PIL.Image.open(config.plot_path),
                               size=image_size)
 
     plot_window = ctk.CTkLabel(output_frame, text="", image=_spec_plot)
