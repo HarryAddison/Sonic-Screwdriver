@@ -4,12 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Sonic-Screwdriver"
-version = "1.0.1"
+version = "1.0.8"
 authors = [
   { name="Harry Addison", email="ha00871@surrey.ac.uk" },
 ]
+
 description = "Astrophysics outreach tool"
 readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "customtkinter",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pillow",
+    "pygame",
+    "scikit-learn",
+    "sonification",
+    "strauss",
+    "tensorflow==2.13.0",
+    "tables",
+    typing_extensions=4.12.2
+    ]
 
 
 [project.urls]

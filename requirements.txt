@@ -7,4 +7,6 @@ pygame
 scikit-learn
 sonification
 strauss
-tensorflow
+tensorflow=2.13.0
+typing_extensions=4.12.2
+tables
