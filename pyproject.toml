@@ -29,7 +29,7 @@ dependencies = [
     "strauss",
     "tensorflow==2.13.0",
     "tables",
-    typing_extensions=4.12.2
+    "typing_extensions==4.12.2"
     ]
 
 
