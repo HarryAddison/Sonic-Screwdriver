@@ -1,0 +1,10 @@
+customtkinter
+matplotlib
+numpy
+pandas
+pillow
+pygame
+scikit-learn
+sonification
+strauss
+tensorflow

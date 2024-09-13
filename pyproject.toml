@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Sonic-Screwdriver"
+version = "1.0.0"
+authors = [
+  { name="Harry Addison", email="ha00871@surrey.ac.uk" },
+]
+description = "Astrophysics outreach tool"
+readme = "README.md"
+
+
+[project.urls]
+Homepage = "https://github.com/HarryAddison/Sonic-Screwdriver"
+Issues = "https://github.com/HarryAddison/Sonic-Screwdriver/issues"
