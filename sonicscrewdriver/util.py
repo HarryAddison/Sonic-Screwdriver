@@ -60,7 +60,7 @@ def plot_empty(plot_size, config):
 
     plt.xlabel(r"$\rm{Wavelength}~[\AA]$")
     plt.ylabel(r"$\rm{Flux}~[erg\AA^{-1}cm^{-2}s^{-1}$]")
-    plt.savefig(config.plot_path, bbox_inches="tight")
+    plt.savefig(f"{config.output_dir}/spectrum.PNG", bbox_inches="tight")
     plt.close()
 
     return

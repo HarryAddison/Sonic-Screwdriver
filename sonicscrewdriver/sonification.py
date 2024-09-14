@@ -125,7 +125,7 @@ def sonification(samplers, instrument_val, scale_val, spec, wave, settings, conf
 
     soni = Sonification(score, sources, sampler, system)
     soni.render()
-    soni.save(config.audio_path)
+    soni.save(f"{config.output_dir}/spectrum.wav")
 
     return
 
@@ -142,11 +142,12 @@ def play_audio(audio_progress, config):
     stop_audio(audio_progress)
 
     # Load in the audio file
-    pygame.mixer.music.load(config.audio_path)
+    pygame.mixer.music.load(f"{config.output_dir}/spectrum.wav")
 
     # Get the audio file time length and calculate how quick the
-    # progress bar should move.
-    audio_length = float(pygame.mixer.Sound(config.audio_path).get_length()) # in seconds
+    # progress bar should move. (in seconds)
+    audio_length = float(pygame.mixer.Sound(f"{config.output_dir}"
+                                            "/spectrum.wav").get_length())
 
     # Get the audio length at the point of the last note playing
     # (i.e exclude the sustain time of the last note)

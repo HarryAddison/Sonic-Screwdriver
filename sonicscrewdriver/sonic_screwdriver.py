@@ -49,7 +49,7 @@ def run_program():
     plot_spec(spec, train_spec_wl, plot_size, config)
 
     # Update the spectrum on the GUI
-    update_spec_plot(plot_window, config.plot_path, image_size)
+    update_spec_plot(plot_window, f"{config.output_dir}/spectrum.PNG", image_size)
 
     # Sonification of the spectrum
     sonification(samplers, instrument_val, scale_val,
@@ -367,8 +367,8 @@ if __name__ == "__main__":
     # Create empty plot to diplay as a placholder for the simulated spectrum
     plot_empty(plot_size, config)
 
-    _spec_plot = ctk.CTkImage(light_image=PIL.Image.open(config.plot_path),
-                              dark_image=PIL.Image.open(config.plot_path),
+    _spec_plot = ctk.CTkImage(light_image=PIL.Image.open(f"{config.output_dir}/spectrum.PNG"),
+                              dark_image=PIL.Image.open(f"{config.output_dir}/spectrum.PNG"),
                               size=image_size)
 
     plot_window = ctk.CTkLabel(output_frame, text="", image=_spec_plot)

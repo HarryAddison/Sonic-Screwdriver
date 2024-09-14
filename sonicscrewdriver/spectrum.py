@@ -8,20 +8,31 @@ from matplotlib.collections import LineCollection
 
 def load_dalek(config):
 
+    # Setup the data paths
+    train_spec_path = (f"{config.dalek_dir}/grids/"
+                        "grid1_v2_log_uniform_fluxes_16feb20_part1_train_interp_98k.npy")
+    train_spec_wave_path = f"{config.dalek_dir}/grids/wavelength.npy"
+    train_params_path = (f"{config.dalek_dir}/grids/"
+                          "grid1_v2_log_uniform_params_16feb20_part1_train_98k.h5")
+
+    network_dir = f"{config.dalek_dir}/networks"
+    network_fns = ["00-260285.h5", "01-260022.h5", "02-260627.h5",
+                   "03-261931.h5", "04-261295.h5"]
+
     # Loading the grids
     print("\nLoading grids")
 
-    train_spectra = np.load(config.dalek_train_spec_path)
-    train_spec_wl = np.load(config.dalek_train_spec_wave_path)
-    train_params_og = pd.read_hdf(config.dalek_train_params_path)
+    train_spectra = np.load(train_spec_path)
+    train_spec_wl = np.load(train_spec_wave_path)
+    train_params_og = pd.read_hdf(train_params_path)
 
     # Load in the neural networks
     print("\nLoading models")
 
     networks = []
-    for network_fn in config.dalek_network_fns:
+    for network_fn in network_fns:
 
-        network = load_model("%s/%s"%(config.dalek_network_dir, network_fn))
+        network = load_model("%s/%s"%(network_dir, network_fn))
         networks.append(network)
 
     # Preprocess the training spectra/parameters so that the scaling can be
@@ -96,7 +107,7 @@ def plot_spec(spec, wave, plot_size, config):
     plt.xlabel(r"$\rm{Wavelength}~[\AA]$")
     plt.ylabel(r"$\rm{Flux}~[erg\AA^{-1}cm^{-2}s^{-1}$]")
 
-    plt.savefig(config.plot_path, bbox_inches="tight")
+    plt.savefig(f"{config.output_dir}/spectrum.PNG", bbox_inches="tight")
     plt.close()
 
     return
