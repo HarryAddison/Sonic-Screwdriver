@@ -123,10 +123,10 @@ if __name__ == "__main__":
     # Plot
     plot_col = 0
     plot_row = 0
-    plot_colspan = 3
+    plot_colspan = 4
     plot_rowspan = 1
 
-    plot_size = (10, 5) # x,y
+    plot_size = (10, 6) # x,y
     plot_scale = 120
     image_size = (plot_size[0] * plot_scale, plot_size[1] * plot_scale)
 
@@ -139,39 +139,41 @@ if __name__ == "__main__":
 
     # Info
     info_frame = ctk.CTkFrame(root, fg_color=background_color)
-    info_frame.grid(column=0, row=0, columnspan=3, pady=5)
+    info_frame.grid(column=0, row=0, columnspan=2, pady=20)
 
     # Spectrum options
     spec_opt_frame = ctk.CTkFrame(root, fg_color=background_color)
-    spec_opt_frame.grid(column=0, row=1, columnspan=2, pady=20, padx=20)
+    spec_opt_frame.grid(column=0, row=1, padx=80, pady=10)
 
     # Instrument options
     instru_opt_frame = ctk.CTkFrame(root, fg_color=background_color)
-    instru_opt_frame.grid(column=0, row=2, padx=20, pady=20)
+    instru_opt_frame.grid(column=0, row=2, padx=80, pady=10)
 
     # Output (plot and audio)
     output_frame = ctk.CTkFrame(root, fg_color=background_color)
-    output_frame.grid(column=2, row=1, rowspan=2, padx=20, pady=20)
+    output_frame.grid(column=1, row=1, rowspan=2, padx=40, pady=10)
 
     # Run Button frame
     run_frame = ctk.CTkFrame(root, fg_color=background_color)
-    run_frame.grid(column=1, row=3, columnspan=2, pady=20)
+    run_frame.grid(column=1, row=3, pady=10)
 
 
     # Info Frame
     # ~~~~~~~~~~
 
     # Program title
-    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=(font,32),
+    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=(font,40),
                 text_color=text_color,
                 anchor="center").grid(column=0, row=0)
 
 
     # Spectrum Options
     # ~~~~~~~~~~~~~~~~
-    ctk.CTkLabel(spec_opt_frame, text="Supernova Parameters",
+    ctk.CTkLabel(spec_opt_frame, text="Supernova Spectrum Options",
                  font=font_header,
-                 text_color=text_color).grid(column=0, row=0, pady=20, padx=10)
+                 text_color=text_color).grid(column=0, row=0,
+                                             columnspan=3,
+                                             pady=20, padx=10)
 
     # Carbon
     c = slider(spec_opt_frame, name="Carbon",
@@ -299,6 +301,7 @@ if __name__ == "__main__":
     ctk.CTkLabel(instru_opt_frame, text="").grid(column=0, row=11, pady=5)
     ctk.CTkLabel(instru_opt_frame, text="Note Scaling",
                 font=font_header, text_color=text_color).grid(column=0, row=12,
+                                                              columnspan=3,
                                                               pady=10)
 
     audio_r = slider(instru_opt_frame, name="Sustain",
@@ -354,11 +357,10 @@ if __name__ == "__main__":
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     # Create "GO" button
-    ctk.CTkButton(run_frame, text='Run', font=(font, 25),
+    ctk.CTkButton(run_frame, text='Simulate', font=(font, 25),
                   width=300, height=50,
                   hover_color="red",
                   border_width=2,
-                  border_color="white",
                   corner_radius=5,
                   command=run_program).grid(column=0, row=0)
 
@@ -381,17 +383,21 @@ if __name__ == "__main__":
     # Play audio file
     # ~~~~~~~~~~~~~~~
 
+    ctk.CTkLabel(output_frame, text="").grid(column=3, row=2, padx=10)
     audio_progress = Progressbar(output_frame, orient="horizontal",
                                  length=image_size[0]-120, mode="determinate")
-    audio_progress.grid(column=2, row=2, padx=30)
+    audio_progress.grid(column=2, row=2, pady=5)
 
     ctk.CTkButton(output_frame, text='Play', font=(font, 16), width=5,
                 command=lambda: play_audio_clicked(audio_progress,
                                                    config)).grid(column=0, row=2,
-                                                                 padx=5)
+                                                                 padx=5, pady=5)
 
     ctk.CTkButton(output_frame, text='Stop', font=(font, 16), width=5,
-                  command=lambda: stop_audio(audio_progress)).grid(column=1, row=2)
+                  command=lambda: stop_audio(audio_progress)).grid(column=1,
+                                                                   row=2,
+                                                                   padx=5,
+                                                                   pady=5)
 
     # Create the window
     # ~~~~~~~~~~~~~~~~~
