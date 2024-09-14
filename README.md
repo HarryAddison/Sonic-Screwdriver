@@ -46,7 +46,7 @@ Sonic Screwdriver is run directly from the command line:
 
 Using Sonic Screwdriver is simple! 
 
-Simply change the supernova option sliders, select an instrument, select a musical scale, and then hit "Run".
+Simply change the supernova option sliders, select an instrument, select a musical scale, and then hit "Simulate".
 Sonic Screwdriver will then use [Dalek](https://github.com/tardis-sn/dalek) to
 produce a supernova spectrum from the options you chose, which will be
 displayed on the right. Sonic Screwdriver will also sonify the spectrum using
