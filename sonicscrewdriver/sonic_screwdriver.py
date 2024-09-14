@@ -111,14 +111,22 @@ if __name__ == "__main__":
     font = "Helvetica"
     text_color = "white"
 
+    font_size_title = 40
     font_size_headers = 20
     font_size_labels = 16
+
+    font_title = ctk.CTkFont(family=font, size=font_size_title, weight="bold",
+                              underline=True)
 
     font_header = ctk.CTkFont(family=font, size=font_size_headers, weight="bold",
                               underline=False)
 
     font_label = ctk.CTkFont(family=font, size=font_size_labels, weight="normal",
                               underline=False)
+
+    font_run_button = ctk.CTkFont(family=font, size=40, weight="normal",
+                                  underline=False)
+    
 
     # Plot
     plot_col = 0
@@ -162,10 +170,9 @@ if __name__ == "__main__":
     # ~~~~~~~~~~
 
     # Program title
-    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=(font,40),
+    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=font_title,
                 text_color=text_color,
                 anchor="center").grid(column=0, row=0)
-
 
     # Spectrum Options
     # ~~~~~~~~~~~~~~~~
@@ -357,10 +364,10 @@ if __name__ == "__main__":
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     # Create "GO" button
-    ctk.CTkButton(run_frame, text='Simulate', font=(font, 25),
+    ctk.CTkButton(run_frame, text='Simulate', font=font_run_button,
+                  text_color=text_color,
                   width=300, height=50,
                   hover_color="red",
-                  border_width=2,
                   corner_radius=5,
                   command=run_program).grid(column=0, row=0)
 
@@ -380,7 +387,7 @@ if __name__ == "__main__":
                      columnspan=plot_colspan, rowspan=plot_rowspan)
 
 
-    # Play audio file
+    # Play/Stop audio file
     # ~~~~~~~~~~~~~~~
 
     ctk.CTkLabel(output_frame, text="").grid(column=3, row=2, padx=10)
@@ -388,12 +395,12 @@ if __name__ == "__main__":
                                  length=image_size[0]-120, mode="determinate")
     audio_progress.grid(column=2, row=2, pady=5)
 
-    ctk.CTkButton(output_frame, text='Play', font=(font, 16), width=5,
+    ctk.CTkButton(output_frame, text='Play', font=font_label, width=5,
                 command=lambda: play_audio_clicked(audio_progress,
                                                    config)).grid(column=0, row=2,
                                                                  padx=5, pady=5)
 
-    ctk.CTkButton(output_frame, text='Stop', font=(font, 16), width=5,
+    ctk.CTkButton(output_frame, text='Stop', font=font_label, width=5,
                   command=lambda: stop_audio(audio_progress)).grid(column=1,
                                                                    row=2,
                                                                    padx=5,
