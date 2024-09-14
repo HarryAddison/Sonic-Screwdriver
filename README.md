@@ -12,7 +12,7 @@ Note: Ignore the error regarding dependency conflicts.
 # Setup
 
 ### Dalek
-Sonic Screwdriver is built upon [Dalek](https://github.com/tardis-sn/dalek),
+Sonic Screwdriver is built upon [Dalek](https://iopscience.iop.org/article/10.3847/2041-8213/abeb1b),
 an emulator for [Tardis](https://tardis-sn.github.io/tardis/) an open-source Monte Carlo radiative-transfer spectral synthesis code.
 Sonic Screwdriver makes use of the Dalek created neural networks to generate
 type Ia supernova spectra from given inputs.
@@ -47,7 +47,7 @@ Sonic Screwdriver is run directly from the command line:
 Using Sonic Screwdriver is simple! 
 
 Simply change the supernova option sliders, select an instrument, select a musical scale, and then hit "Simulate".
-Sonic Screwdriver will then use [Dalek](https://github.com/tardis-sn/dalek) to
+Sonic Screwdriver will then use [Dalek](https://iopscience.iop.org/article/10.3847/2041-8213/abeb1b) to
 produce a supernova spectrum from the options you chose, which will be
 displayed on the right. Sonic Screwdriver will also sonify the spectrum using
 [Strauss](https://github.com/james-trayford/strauss/). To play the spectrum sonifcation hit the "play" button and to stop the audio hit the "stop" button.
