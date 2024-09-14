@@ -1,6 +1,9 @@
 import argparse
 import importlib
+import logging
 import matplotlib.pyplot as plt
+import os
+from pathlib import Path
 
 
 def parser_init():
@@ -34,6 +37,53 @@ def get_config():
     params = importlib.import_module(args.initfile)
 
     return params
+
+
+def check_config(config):
+
+    # Check dalek_dir and instrument_dir variables exist and are strings.
+    try:
+        config.dalek_dir = Path(config.dalek_dir)
+        config.instruments_dir = Path(config.instruments_dir)
+    except AttributeError:
+        logging.exception("ERROR with the provided configuration file.")
+    except TypeError:
+        logging.exception("ERROR with the provided configuration file.")
+
+    # Check that the Dalek directory exists
+    dir_exist = os.path.exists(Path(config.dalek_dir))
+
+    if dir_exist == True:
+        pass
+    elif dir_exist == False:
+        logging.exception("Error: Provied Dalek data directory does not exist.")
+        exit()
+
+    # Check that the instrument directory exists
+    dir_exist = os.path.exists(Path(config.dalek_dir))
+
+    if dir_exist == True:
+        pass
+    elif dir_exist == False:
+        logging.exception("Error: Provied instrument data directory does not exist.")
+        exit()
+
+    # Check the output_dir variable exists and is a string
+    try:
+        config.output_dir = Path(config.output_dir)
+    except AttributeError:
+        config.output_dir = Path(os.getcwd(), "outputs")
+        logging.warning("Warning: No path provided for an output directory.\n"
+                        "Using/creating output directory in current directory:\n"
+                        "%s"%config.output_dir)
+
+        if os.path.exists(config.output_dir) == False:
+            os.makedirs(config.output_dir)
+
+    except TypeError:
+        logging.exception("ERROR with the provided configuration file.")
+
+    return config
 
 
 def scale_abundance(percent, model_vals):
