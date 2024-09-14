@@ -52,7 +52,6 @@ def run_program():
     update_spec_plot(plot_window, f"{config.output_dir}/spectrum.PNG", image_size)
 
     # Sonification of the spectrum
-    # TODO Make note length option longer
     sonification(samplers, instrument_val, scale_val,
                  spec, train_spec_wl,
                  settings, config)
@@ -81,7 +80,6 @@ if __name__ == "__main__":
     # Load instrument samplers
     # ~~~~~~~~~~~~~~~~~~~~~~~~
     samplers = load_samplers(config)
-    #TODO automatically download the samplers files if they are not found.
 
     pygame.mixer.init()
 
@@ -99,7 +97,7 @@ if __name__ == "__main__":
 
     root.title("Sonic Screwdriver")
     root.geometry("1960x1080")
-   
+
 
     # GUI design options
     # ~~~~~~~~~~~~~~~~~~

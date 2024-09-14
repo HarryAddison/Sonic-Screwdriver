@@ -18,6 +18,7 @@ Sonic Screwdriver makes use of the Dalek created neural networks to generate
 type Ia supernova spectra from given inputs.
 
 Download the Dalek neural networks from [Dalek data](https://drive.google.com/drive/folders/1DfY7GcQ6TSNBLighvct0uRPMCpMLTfs-).
+Lastly unzip the downloaded file.
 
 
 ### Configuration file
@@ -37,7 +38,9 @@ An example configuration file is provided [here](https://github.com/HarryAddison
 Sonic Screwdriver is run directly from the command line:
 
 `cd directory_containing_{my_config.py}`
+
 `python3 -m sonicscrewdriver.sonic_screwdriver -i {my_config}`
+
 
 # Using Sonic Screwdriver
 
