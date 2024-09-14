@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Sonic-Screwdriver"
-version = "1.0.8"
+version = "1.0.11"
 authors = [
   { name="Harry Addison", email="ha00871@surrey.ac.uk" },
 ]
@@ -28,8 +28,7 @@ dependencies = [
     "sonification",
     "strauss",
     "tensorflow==2.13.0",
-    "tables",
-    "typing_extensions==4.12.2"
+    "tables"
     ]
 
 
