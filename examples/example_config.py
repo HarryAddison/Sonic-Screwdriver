@@ -1,5 +1,5 @@
-dalek_dir = "/home/ha00871/Downloads/daleknn1_data/"
+dalek_dir = "/home/harry/Downloads/daleknn1_data/"
 
-instruments_dir = "/home/ha00871/PhD/Outreach/sn-spec-sonification/samples"
+instruments_dir = "/home/harry/sonic-screwdriver-example/samples"
 
-output_dir = "/home/ha00871/PhD/Outreach/sn-spec-sonification/output"
+output_dir = "/home/harry/sonic-screwdriver-example/output"
