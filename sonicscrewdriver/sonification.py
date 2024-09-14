@@ -7,31 +7,56 @@ import copy
 import pygame
 from threading import Thread
 from time import sleep
+import urllib.request
 
+
+def download_sampler(url, save_fn, save_dir):
+
+    save_path = Path(f"{save_dir}",f"{save_fn}")
+
+    with urllib.request.urlopen(url) as response, save_path.open(mode='wb') as out_file:
+        print(f"\n Downloading {save_fn}")
+
+        data = response.read() # a `bytes` object
+        out_file.write(data)
+
+    return
 
 
 def load_samplers(config):
 
     print("\nLoading instrument samples")
 
+    samples = {"flute": {"fn": "flute.sf2",
+                         "url": "https://drive.google.com/uc?export=download&id=1DAbIitPRUUGidrhVt4wiwwXrSxOD7RDY", 
+                         "preset": None},
+               "guitar": {"fn": "guitars.sf2",
+                          "url": "https://drive.google.com/uc?export=download&id=18CCYj8AFy7wpDdGg0ADx8GfTTHEFilrs",
+                          "preset": 10},
+               "piano": {"fn": "piano.sf2",
+                         "url": "https://drive.usercontent.google.com/download?id=1p0jY3AgGyD9DJGWC25aEUEaydI_n1-3M&export=download&authuser=0&confirm=t&uuid=a2a840c9-12c4-4ce6-bd29-1b4b5a1dec95&at=AO7h07eGPB-DROS_JntK9vRkyPdv%3A1726224049695",
+                         "preset": 1},
+               "choir": {"fn": "choir.sf2",
+                         "url": " https://drive.usercontent.google.com/download?id=14ZaZagjyWkCztx0WdPhJj6yBjArQtQ3O&export=download&authuser=0",
+                         "preset": 1},
+               "cello": {"fn": "assortment.sf2",
+                         "url": "https://drive.usercontent.google.com/download?id=1VZkoiVOonffpJWxZah-AdQkxaTFIzZ6q&export=download&authuser=0&confirm=t&uuid=20ed40a8-29bc-458b-aede-c4fa0e02a79d&at=AO7h07d-C-xX35_yDTMT54Lm-Qsd%3A1726224260647",
+                         "preset": 7},
+               "oboe": {"fn": "assortment.sf2",
+                        "url": "https://drive.usercontent.google.com/download?id=1VZkoiVOonffpJWxZah-AdQkxaTFIzZ6q&export=download&authuser=0&confirm=t&uuid=20ed40a8-29bc-458b-aede-c4fa0e02a79d&at=AO7h07d-C-xX35_yDTMT54Lm-Qsd%3A1726224260647",
+                        "preset": 31}}
+
     samplers = {}
 
-    samplers["flute"] = Sampler(Path(config.instruments_dir,"flute.sf2"))
+    for name, info in samples.items():
+        try:
+            samplers[name] = Sampler(Path(config.instruments_dir, info["fn"]),
+                                     sf_preset=info["preset"])
+        except FileNotFoundError:
+            download_sampler(info["url"], info["fn"], config.instruments_dir)
 
-    samplers["guitar"] = Sampler(Path(config.instruments_dir, "guitars.sf2"),
-                                 sf_preset=10)
-
-    samplers["piano"] = Sampler(Path(config.instruments_dir, "piano.sf2"),
-                                sf_preset=1)
-
-    samplers["choir"] = Sampler(Path(config.instruments_dir, "choir.sf2"),
-                                sf_preset=1)
-
-    samplers["cello"] = Sampler(Path(config.instruments_dir, "assortment.sf2"),
-                                sf_preset=7)
-
-    samplers["oboe"] = Sampler(Path(config.instruments_dir, "assortment.sf2"),
-                                  sf_preset=31)
+            samplers[name] = Sampler(Path(config.instruments_dir, info["fn"]),
+                                     sf_preset=info["preset"])
 
     return samplers
 
