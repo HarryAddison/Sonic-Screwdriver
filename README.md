@@ -11,6 +11,19 @@ Note: Ignore the error regarding dependency conflicts.
 
 # Setup
 
+### Tkinter
+Sonic Screwdriver uses Tkinter as the source of the program interface.
+Tkinter will need to be installed:
+
+- Debian systems:
+
+    `sudo apt-get install python3-tk`
+
+- Fedora systems:
+
+    `sudo dnf install python3-tkinter`
+
+
 ### Dalek
 Sonic Screwdriver is built upon [Dalek](https://iopscience.iop.org/article/10.3847/2041-8213/abeb1b),
 an emulator for [Tardis](https://tardis-sn.github.io/tardis/) an open-source Monte Carlo radiative-transfer spectral synthesis code.
