@@ -124,8 +124,8 @@ if __name__ == "__main__":
     # Normal scaling corresponds to a window size of 1980x1060
 
     # Calculate scaling needed
-    w_scale = 1980 / width
-    h_scale = 1060 / height
+    w_scale = width / 1980
+    h_scale = height / 1060
 
     scale = min(w_scale, h_scale)
 
