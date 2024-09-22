@@ -52,7 +52,7 @@ class slider(ctk.CTkSlider):
         self.label_val.grid(column=self.col+2, row=self.row)
 
 
-    def _update_label(self, _):
+    def _update_label(self, _=None):
         text = self._get_text()
         self.label_val.configure(text=text)
 
@@ -66,10 +66,16 @@ class slider(ctk.CTkSlider):
         text = self.label_format.format(val)
 
         return text
-    
-    
+
+
     def get(self):
         return self.slider.get()
+
+
+    def set(self, val):
+        self.slider.set(val)
+        self._update_label()
+        return
 
 
 def update_spec_plot(widget, file_path, image_size):
