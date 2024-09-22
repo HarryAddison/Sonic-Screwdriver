@@ -11,7 +11,6 @@ from tkinter import *
 from tkinter.ttk import Progressbar
 
 
-
 def get_settings():
 
     # Spectrum sliders
@@ -116,7 +115,10 @@ if __name__ == "__main__":
     ctk.set_default_color_theme("dark-blue")
 
     root.title("Sonic Screwdriver")
-    root.geometry("1960x1080")
+
+    # Set the size of the window according to the display size
+    height, width = get_display_size()
+    root.geometry(f"{width}x{height}")
 
 
     # GUI design options

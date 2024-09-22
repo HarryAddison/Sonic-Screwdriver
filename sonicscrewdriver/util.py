@@ -4,6 +4,7 @@ import logging
 import matplotlib.pyplot as plt
 import os
 from pathlib import Path
+from tkinter import *
 
 
 def parser_init():
@@ -84,6 +85,18 @@ def check_config(config):
         logging.exception("ERROR with the provided configuration file.")
 
     return config
+
+
+def get_display_size():
+    root = Tk()
+    root.update_idletasks()
+    root.attributes("-fullscreen", True)
+    root.attributes("-alpha", 0)
+    root.state("iconic")
+    height = str(root.winfo_screenheight())
+    width = str(root.winfo_screenwidth())
+    root.destroy()
+    return height, width
 
 
 def scale_abundance(percent, model_vals):
