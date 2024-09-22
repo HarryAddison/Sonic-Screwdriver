@@ -77,7 +77,16 @@ def create_spec(scaler_params, scaler_spec, networks, settings):
     return mean_predicted_spec
 
 
-def plot_spec(spec, wave, plot_size, config):
+def doppler_shift(rest_wl, vel):
+
+    c = 299792.458 # km/s
+
+    obs_wl = rest_wl * (np.sqrt((c + vel) / (c - vel)))
+
+    return obs_wl
+
+
+def plot_spec(spec, wave, plot_size, settings, config):
 
     x = wave
     y = 10**np.array(spec, dtype=float)
@@ -89,9 +98,34 @@ def plot_spec(spec, wave, plot_size, config):
     fig, ax = plt.subplots(1,1, figsize=plot_size)
     ax.set_facecolor('k')
 
+    # Plot lines marking different features
+    features = [{"name": "Ca II H&K", "rest": 3945.28},
+                {"name": "Si II 4000A", "rest":  4129.73},
+                {"name": "Mg II 4300A", "rest": 4481.2},
+                {"name": "Mg II 4300A", "rest": 4481.2},
+                {"name": "Fe II 4800A", "rest": 5083.42},
+                {"name": "Fe II 4800A", "rest": 5083.42},
+                {"name": "S II 5500A", "rest": 5624.32},
+                {"name": "Si II 5800A", "rest": 5971.85},
+                {"name": "Si II 6150A", "rest": 6355.21},
+                {"name": "O I 7500A", "rest": 7773.37}]
+
+
+    for feature in features:
+        vel = float(settings["spec_params"]["v_inner"][0])
+
+        feature_wl = doppler_shift(feature["rest"], -vel)
+
+        ax.vlines(feature_wl,
+                  ymin=min(y)-min(y)*0.1, ymax=max(y)+min(y),
+                  linestyle="dashed", colors="grey")
+
+        ax.text(feature_wl+20, (1.001 * min(y)), feature["name"],
+                        rotation=90, fontsize=10, zorder=8, c="grey")
+
     # Plot a solid grey line to fill in the gaps of the later created
     # coloured line segments.
-    plt.plot(x, y, c="grey", linewidth=2)
+    ax.plot(x, y, c="grey", linewidth=2)
 
     norm = plt.Normalize(min(x), max(x))
 
