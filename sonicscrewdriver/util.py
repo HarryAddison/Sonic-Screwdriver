@@ -93,8 +93,8 @@ def get_display_size():
     root.attributes("-fullscreen", True)
     root.attributes("-alpha", 0)
     root.state("iconic")
-    height = str(root.winfo_screenheight())
-    width = str(root.winfo_screenwidth())
+    height = int(root.winfo_screenheight())
+    width = int(root.winfo_screenwidth())
     root.destroy()
     return height, width
 

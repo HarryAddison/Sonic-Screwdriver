@@ -120,6 +120,17 @@ if __name__ == "__main__":
     height, width = get_display_size()
     root.geometry(f"{width}x{height}")
 
+    # Set the widget scaling depending on window size
+    # Normal scaling corresponds to a window size of 1980x1060
+
+    # Calculate scaling needed
+    w_scale = 1980 / width
+    h_scale = 1060 / height
+
+    scale = min(w_scale, h_scale)
+
+    ctk.set_widget_scaling(scale)
+
 
     # GUI design options
     # ~~~~~~~~~~~~~~~~~~
