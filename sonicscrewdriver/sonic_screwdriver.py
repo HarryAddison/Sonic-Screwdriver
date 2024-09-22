@@ -109,6 +109,7 @@ if __name__ == "__main__":
     # Setup the main window
     # ~~~~~~~~~~~~~~~~~~~~~
     root = ctk.CTk()
+    root.attributes('-fullscreen',True)
 
     # Set the theme and colours
     ctk.set_appearance_mode("dark")
@@ -130,7 +131,7 @@ if __name__ == "__main__":
     scale = min(w_scale, h_scale)
 
     ctk.set_widget_scaling(scale)
-
+    ctk.set_window_scaling(1)
 
     # GUI design options
     # ~~~~~~~~~~~~~~~~~~
@@ -423,7 +424,7 @@ if __name__ == "__main__":
     # ~~~~~~~~~~~~~~~
     ctk.CTkLabel(output_frame, text="").grid(column=3, row=2, padx=10)
     audio_progress = Progressbar(output_frame, orient="horizontal",
-                                 length=image_size[0]-120, mode="determinate")
+                                 length=(image_size[0]-120)*scale, mode="determinate")
     audio_progress.grid(column=2, row=2, pady=5)
 
     ctk.CTkButton(output_frame, text='Play', font=(font, 16), width=5,

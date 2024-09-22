@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Sonic-Screwdriver"
-version = "1.3.3"
+version = "1.3.6"
 authors = [
   { name="Harry Addison", email="ha00871@surrey.ac.uk" },
 ]
