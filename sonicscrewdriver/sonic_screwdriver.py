@@ -146,8 +146,12 @@ if __name__ == "__main__":
     font = "Helvetica"
     text_color = "white"
 
+    font_size_title = 60
     font_size_headers = 20
     font_size_labels = 16
+
+    font_title = ctk.CTkFont(family=font, size=font_size_title, weight="bold",
+                              underline=True)
 
     font_header = ctk.CTkFont(family=font, size=font_size_headers, weight="bold",
                               underline=False)
@@ -163,7 +167,7 @@ if __name__ == "__main__":
 
     plot_size = (10, 6) # x,y
     plot_scale = 120
-    image_size = (plot_size[0] * plot_scale, plot_size[1] * plot_scale)
+    image_size = ((2/3 * width), ((6/10)*(2/3 *width))) # 2/3 width of window
 
 
     # Frames
@@ -174,7 +178,7 @@ if __name__ == "__main__":
 
     # Info
     info_frame = ctk.CTkFrame(root, fg_color=background_color)
-    info_frame.grid(column=0, row=0, columnspan=2, pady=20)
+    info_frame.grid(column=0, row=0, columnspan=2, padx=80, pady=40)
 
     # Spectrum presets
     spec_preset_frame = ctk.CTkFrame(root, fg_color=background_color)
@@ -201,9 +205,10 @@ if __name__ == "__main__":
     # ~~~~~~~~~~
 
     # Program title
-    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=(font,40),
-                text_color=text_color,
-                anchor="center").grid(column=0, row=0)
+    ctk.CTkLabel(info_frame, text="").grid(column=0, row=0, padx=30)
+    
+    ctk.CTkLabel(info_frame, text="Sonic Screwdriver", font=font_title,
+                 text_color=text_color).grid(column=1, row=0)
 
 
     # Spectrum Options
